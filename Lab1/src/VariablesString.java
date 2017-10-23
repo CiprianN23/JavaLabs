@@ -26,7 +26,27 @@ public static void main (String[] args)
     char backslash = '\\';
     char singleQuote ='\'';
     char doubleQuote = '\"';
-    char[] charArray ={ 'a', 'b', 'c', 'd', 'e' }; 
+    char[] charArray ={ 'a', 'b', 'c', 'd', 'e' };
+    
+    String[] propozitii = new String[4];
+    
+    propozitii[0] = "Prima propozitie!";
+    propozitii[1] = "A doua propozitie!";
+    propozitii[2] = "A treia propozitie!";
+    
+    System.out.println(propozitii[0]);
+    System.out.println(propozitii[1]);
+    System.out.println(propozitii[2]);
+    
+    System.out.println(propozitii.length);//string.lenght returneaza lungimea respectivului string
+    System.out.println(propozitii[1].replace('A', 'B'));//string.repalce returneaza un string dupa ce unul dintre caractere a fost schimbat
+    
+    String strM = "Brico Depot";
+    
+    String[] bucati = strM.split(" ");
+    
+	String[] delimitare = strM.split("c");
+	System.out.println(delimitare[0]);
 
     System.out.println ("--- 1 ---");
     System.out.println ( "c=["+c+"] tab=["+tab+"] nul=["+nul+"] backslash=["+backslash+"] singleQuote=["+singleQuote+"] doubleQuote=["+doubleQuote+"] charArray[0]=["+charArray[0]+"] charArray[4]=["+charArray[4]+"]\n");
