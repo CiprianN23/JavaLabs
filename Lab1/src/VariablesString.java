@@ -44,6 +44,8 @@ public static void main (String[] args)
     String strM = "Brico Depot";
     
     String[] bucati = strM.split(" ");
+    String iversat = bucati[1] +" "+ bucati[0];
+    System.out.println(iversat);
     
 	String[] delimitare = strM.split("c");
 	System.out.println(delimitare[0]);
