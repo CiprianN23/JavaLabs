@@ -15,7 +15,13 @@ public class DemoPoints {
 		
 		plane.points = mylist;
 		
+		System.out.println(mylist[0]);
+		
 		Point center = plane.GetCenter();
+		
+		plane.Rotate(mylist[0], 45.0);
+		
+		System.out.println(mylist[0]);
 		
 	}
 

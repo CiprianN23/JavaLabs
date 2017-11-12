@@ -26,5 +26,11 @@ public class GeometricPlane {
 		return p;
 	}	
 	
+	public Point Rotate(Point p1, double angle) {
+		p1.setX((int)(GetCenter().getX() + (p1.getX() * Math.cos(angle) - p1.getY() * Math.sin(angle))));
+		p1.setY((int)(GetCenter().getX() + (p1.getX() * Math.sin(angle) + p1.getY() * Math.cos(angle))));
+		return p1;
+		
+	}
 	//etc
 }
