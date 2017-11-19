@@ -2,7 +2,7 @@ package lab3;
 
 public class DemoPoint3D {
 	public static void main(String args[]) {
-		GeometricSpace space = new GeometricSpace();
+		GeometricSpace space = new GeometricSpace(null);
 		
 		Point3D[] mylist = new Point3D[5];
 		

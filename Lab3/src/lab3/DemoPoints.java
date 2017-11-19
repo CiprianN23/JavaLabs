@@ -1,27 +1,12 @@
 package lab3;
-
+import java.util.*;
 public class DemoPoints {
 
 	public static void main(String[] args) {
 		
-		GeometricPlane plane = new GeometricPlane();
-		
-		Point[] mylist = new Point[5];
-		mylist[0] = new Point(1, 1);
-		mylist[1] = new Point(2,2);
-		mylist[2] = new Point(3,3);
-		mylist[3] = new Point(1,3);
-		mylist[4] = new Point(3,1);
-		
-		plane.points = mylist;
-		
-		System.out.println(mylist[0]);
-		
-		Point center = plane.GetCenter();
-		
-		plane.Rotate(mylist[0], 45.0);
-		
-		System.out.println(mylist[0]);
+		Vector<Point> p = new Vector<Point>();
+		p.add(new Point(1,1));
+		GeometricPlane plane = new GeometricPlane(p);
 		
 	}
 
