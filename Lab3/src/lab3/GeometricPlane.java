@@ -7,7 +7,12 @@ public class GeometricPlane {
 	
 	//public functions
 	GeometricPlane(Vector<Point> v1){
-		System.arraycopy(v1, 0, points, 0, v1.size());
+		points = new Point[v1.size()];
+		
+		Point[] array = new Point[v1.size()];
+		v1.toArray(array);
+		
+		System.arraycopy(array, 0, points, 0, points.length);
 	}
 	public Point GetCenter()
 	{
@@ -26,13 +31,40 @@ public class GeometricPlane {
 		p.setY( p.getY() / points.length );
 		
 		return p;
-	}	
+	}
 	
-	public Point Rotate(Point p1, double angle) {
+	
+	public Point GetCenter(ArrayList<Point> pts){
+		if(pts.isEmpty())
+			return null;
+		Point p = new Point(0,0);;
+		
+		Iterator<Point> i = pts.iterator();
+		while(i.hasNext())
+		{
+			Point nextpoint  = i.next();
+			p.setX( nextpoint.getX() + p.getX() );
+			p.setY( nextpoint.getY() + p.getY() );
+		}
+		
+		p.setX( p.getX() / pts.size() );
+		p.setY( p.getY() / pts.size() );
+		
+		return p;
+	}
+	
+	public Point RotatePoint(Point p1, double angle) {
 		p1.setX((int)(GetCenter().getX() + (p1.getX() * Math.cos(angle) - p1.getY() * Math.sin(angle))));
 		p1.setY((int)(GetCenter().getX() + (p1.getX() * Math.sin(angle) + p1.getY() * Math.cos(angle))));
 		return p1;
 		
+	}
+	public void RotatePoints(double angle){
+		Point[] pts = new Point[points.length];
+		for(int i = 0; i < points.length; i++){
+			points[i] = RotatePoint(pts[i],angle);
+		}
+		points = pts;
 	}
 	public Point Shift(Point p1,int dx, int dy) {
 		
