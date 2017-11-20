@@ -1,6 +1,13 @@
 package lab3;
 
+import java.util.Vector;
+
 public class GeometricSpace extends GeometricPlane {
+	GeometricSpace(Vector<Point> v1) {
+		super(v1);
+		// TODO Auto-generated constructor stub
+	}
+
 	//members
 	public Point3D[] points3d;
 	

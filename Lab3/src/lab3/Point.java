@@ -31,7 +31,10 @@ public class Point {
 	{ 
 		y = yy;
 	}
-	
+	public String toString() {
+		return this.x + "," + this.y;
+		
+	}
 	//private functions
 	//-------------------------------------
 }
