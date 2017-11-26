@@ -48,3 +48,6 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+/Lab1/nbproject/private/
+/Lab3/nbproject/private/
+/Lab2/nbproject/private/

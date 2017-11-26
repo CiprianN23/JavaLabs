@@ -9,7 +9,7 @@ public class DemoPoints {
 		p.add(new Point(2,2));
 		p.add(new Point(3,3));
 		GeometricPlane plane = new GeometricPlane(p);
-		ArrayList<Point> aux = new ArrayList<Point>();
+		LinkedList<Point> aux = new LinkedList<Point>();
 		for(Point pp : p)
 		{
 			aux.add(pp);

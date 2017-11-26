@@ -34,7 +34,7 @@ public class GeometricPlane {
 	}
 	
 	
-	public Point GetCenter(ArrayList<Point> pts){
+	public Point GetCenter(LinkedList<Point> pts){
 		if(pts.isEmpty())
 			return null;
 		Point p = new Point(0,0);;
