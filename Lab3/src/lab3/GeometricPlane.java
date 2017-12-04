@@ -3,38 +3,39 @@ import java.util.*;
 public class GeometricPlane {
 	
 	//members
-	public Point[] points;
+	public static LinkedList<Point> points;
 	
 	//public functions
-	GeometricPlane(Vector<Point> v1){
-		points = new Point[v1.size()];
-		
-		Point[] array = new Point[v1.size()];
-		v1.toArray(array);
-		
-		System.arraycopy(array, 0, points, 0, points.length);
+	GeometricPlane(LinkedList<Point> l1){
+		points.addAll(l1);
 	}
-	public Point GetCenter()
+	
+	GeometricPlane(Hashtable<Point, Integer> h1){
+		
+		points.addAll((Collection<? extends Point>) h1.keys());
+	}
+	
+	public static Point GetCenter()
 	{
 		if (points == null)
 			return null;
-		if (points.length == 0)
+		if(points.isEmpty())
 			return null;
 		
 		Point p = new Point(0,0);
-		for(int i=0;i<points.length;i++)
+		for(int i=0;i < points.size(); i++)
 		{
-			p.setX( points[i].getX() + p.getX() );
-			p.setY( points[i].getY() + p.getY() );
+			p.setX( points.get(i).getX() + p.getX() );
+			p.setY( points.get(i).getY() + p.getY() );
 		}
-		p.setX( p.getX() / points.length );
-		p.setY( p.getY() / points.length );
+		p.setX( p.getX() / points.size() );
+		p.setY( p.getY() / points.size() );
 		
 		return p;
 	}
 	
 	
-	public Point GetCenter(ArrayList<Point> pts){
+	public Point GetCenter(LinkedList<Point> pts){
 		if(pts.isEmpty())
 			return null;
 		Point p = new Point(0,0);;
@@ -59,13 +60,13 @@ public class GeometricPlane {
 		return p1;
 		
 	}
-	public void RotatePoints(double angle){
-		Point[] pts = new Point[points.length];
-		for(int i = 0; i < points.length; i++){
-			points[i] = RotatePoint(pts[i],angle);
+	/*public void RotatePoints(double angle){
+		LinkedList<Point> pts = new LinkedList<Point>();
+		for(int i = 0; i < points.size(); i++){
+			
 		}
 		points = pts;
-	}
+	}*/
 	public Point Shift(Point p1,int dx, int dy) {
 		
 		p1.setX(p1.getX() + dx);
