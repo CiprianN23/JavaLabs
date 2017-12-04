@@ -1,11 +1,10 @@
 package lab3;
 
-import java.util.Vector;
+import java.util.LinkedList;
 
 public class GeometricSpace extends GeometricPlane {
-	GeometricSpace(Vector<Point> v1) {
+	GeometricSpace(LinkedList<Point> v1) {
 		super(v1);
-		// TODO Auto-generated constructor stub
 	}
 
 	//members

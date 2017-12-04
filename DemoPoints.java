@@ -1,23 +1,52 @@
 package lab3;
+import java.io.*;
 import java.util.*;
 public class DemoPoints {
 
-	public static void main(String[] args) {
+	static final Integer ONE = new Integer(1);
+	public static void main(String[] args) throws IOException {
 		
-		Vector<Point> p = new Vector<Point>();
-		p.add(new Point(1,1));
-		p.add(new Point(2,2));
-		p.add(new Point(3,3));
-		GeometricPlane plane = new GeometricPlane(p);
-		LinkedList<Point> aux = new LinkedList<Point>();
-		for(Point pp : p)
-		{
-			aux.add(pp);
-		}
-		Point a = plane.GetCenter(aux);
-		
-		System.out.println(p.get(1).compareTo(p.get(0)));
-		
+		Hashtable<Point,Integer> map = new Hashtable<Point, Integer>();
+		FileReader  fr = new FileReader ("points.txt");
+        BufferedReader br = new BufferedReader(fr);
+        String line;
+        
+        while ((line = br.readLine()) != null)
+        {
+            processLine(line, map);
+        }
+        Enumeration en = map.keys();
+        while (en.hasMoreElements())
+        {
+            Point key = (Point)en.nextElement();
+            System.out.println(key + " : " + map.get(key));
+        }
+     
+	
+	s
 	}
-	//TODO: TreeSet
+    static void processLine(String line, Map map)
+    {
+             
+        String[] sir = line.split(" ");
+        Point p = new Point(Integer.parseInt(sir[0]) ,Integer.parseInt(sir[1])  );
+        
+         addPoint(map, p);
+		
+     
+    }
+
+    static void addPoint(Map map, Point p)
+    {
+    	Integer obj = (Integer) map.get(p);
+	    if (obj == null)
+	    {
+	        map.put(p, 1);
+	    }
+	    else
+	    {
+	        int i = ((Integer)obj).intValue() + 1;
+	        map.put(p, new Integer(i));
+	    }
+	}
 }
