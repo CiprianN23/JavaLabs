@@ -23,7 +23,7 @@ public class DemoPoints {
         }
      
 	
-	s
+	
 	}
     static void processLine(String line, Map map)
     {

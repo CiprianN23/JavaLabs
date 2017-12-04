@@ -10,9 +10,9 @@ public class GeometricPlane {
 		points.addAll(l1);
 	}
 	
-	GeometricPlane(Hashtable<?, Point> h1){
+	GeometricPlane(Hashtable<Point, Integer> h1){
 		
-		points.addAll(h1.values());
+		points.addAll((Collection<? extends Point>) h1.keys());
 	}
 	
 	public static Point GetCenter()

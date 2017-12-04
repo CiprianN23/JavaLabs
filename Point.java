@@ -13,7 +13,6 @@ public class Point implements Comparable<Point>{
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
 		return 701 * x + 997 * y; 
 	}
 
