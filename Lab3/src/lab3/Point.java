@@ -5,6 +5,17 @@ public class Point implements Comparable<Point>{
 	//members 
 	//--------------------------------------
 	
+	@Override
+	public boolean equals(Object a) {
+		return ( this.getX() == ((Point)a).getX() ) && ( this.getY() == ((Point)a).getY() ); 
+	}
+
+
+	@Override
+	public int hashCode() {
+		return 701 * x + 997 * y; 
+	}
+
 	private int x;
 	private int y;
 	

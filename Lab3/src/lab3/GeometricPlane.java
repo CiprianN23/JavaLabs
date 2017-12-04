@@ -3,12 +3,18 @@ import java.util.*;
 public class GeometricPlane {
 	
 	//members
-	public static LinkedList<Point> points;//TODO: LinkedList
+	public static LinkedList<Point> points;
 	
 	//public functions
 	GeometricPlane(LinkedList<Point> l1){
 		points.addAll(l1);
 	}
+	
+	GeometricPlane(Hashtable<Point, Integer> h1){
+		
+		points.addAll((Collection<? extends Point>) h1.keys());
+	}
+	
 	public static Point GetCenter()
 	{
 		if (points == null)
