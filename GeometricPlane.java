@@ -33,8 +33,6 @@ public class GeometricPlane {
 		
 		return p;
 	}
-	
-	
 	public Point GetCenter(LinkedList<Point> pts){
 		if(pts.isEmpty())
 			return null;
