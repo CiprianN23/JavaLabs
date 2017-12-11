@@ -1,52 +1,33 @@
 package lab3;
-import java.io.*;
+
 import java.util.*;
+
 public class DemoPoints {
 
-	static final Integer ONE = new Integer(1);
-	public static void main(String[] args) throws IOException {
-		
-		Hashtable<Point,Integer> map = new Hashtable<Point, Integer>();
-		FileReader  fr = new FileReader ("points.txt");
-        BufferedReader br = new BufferedReader(fr);
-        String line;
-        
-        while ((line = br.readLine()) != null)
-        {
-            processLine(line, map);
-        }
-        Enumeration en = map.keys();
-        while (en.hasMoreElements())
-        {
-            Point key = (Point)en.nextElement();
-            System.out.println(key + " : " + map.get(key));
-        }
-     
-	
-	
-	}
-    static void processLine(String line, Map map)
-    {
-             
-        String[] sir = line.split(" ");
-        Point p = new Point(Integer.parseInt(sir[0]) ,Integer.parseInt(sir[1])  );
-        
-         addPoint(map, p);
-		
-     
-    }
+	public static void main(String[] args) throws InterruptedException {
 
-    static void addPoint(Map map, Point p)
-    {
-    	Integer obj = (Integer) map.get(p);
-	    if (obj == null)
-	    {
-	        map.put(p, 1);
-	    }
-	    else
-	    {
-	        int i = ((Integer)obj).intValue() + 1;
-	        map.put(p, new Integer(i));
-	    }
+		MyThread mt = new MyThread("points1.txt");
+		MyThread mt1 = new MyThread("points2.txt");
+		Thread t = new Thread(mt);
+		Thread t1 = new Thread(mt1);
+		t.start();
+		t1.start();
+		t.join();
+		t1.join();
+
+		Hashtable<Point, Integer> map = mt.getMap();
+		Hashtable<Point, Integer> map1 = mt1.getMap();
+		Hashtable<Point, Integer> map2 = new Hashtable();
+		map2.putAll(map);
+		map2.putAll(map1);
+
+		Enumeration en = map2.keys();
+		
+		while (en.hasMoreElements()) {
+			Point key = (Point) en.nextElement();
+			System.out.println(key + " : " + map2.get(key));
+		}
+		
 	}
+
 }
