@@ -16,21 +16,18 @@ public class DemoPoints {
 		t1.join();
 
 		Hashtable<Point, Integer> map = mt.getMap();
+		Hashtable<Point, Integer> map1 = mt1.getMap();
+		Hashtable<Point, Integer> map2 = new Hashtable();
+		map2.putAll(map);
+		map2.putAll(map1);
 
-		Enumeration en = map.keys();
+		Enumeration en = map2.keys();
+		
 		while (en.hasMoreElements()) {
 			Point key = (Point) en.nextElement();
-			System.out.println(key + " : " + map.get(key));
+			System.out.println(key + " : " + map2.get(key));
 		}
-
-		map = mt1.getMap();
-
-		en = map.keys();
-		while (en.hasMoreElements()) {
-			Point key = (Point) en.nextElement();
-			System.out.println(key + " : " + map.get(key));
-		}
-
+		
 	}
 
 }
