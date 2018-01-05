@@ -1,6 +1,7 @@
 package lab3;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -18,6 +19,11 @@ class MyThread implements Runnable {
 	MyThread(String name) {
 		count = 0;
 		fileName = name;
+	}
+	
+	MyThread(File file) {
+		count = 0;
+		fileName = file.toString();
 	}
 
 	// Entry point al firului

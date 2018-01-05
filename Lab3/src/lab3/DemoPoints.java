@@ -1,33 +1,97 @@
 package lab3;
 
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Vector;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class DemoPoints {
 
+	static Point key;
 	public static void main(String[] args) throws InterruptedException {
 
-		MyThread mt = new MyThread("points1.txt");
-		MyThread mt1 = new MyThread("points2.txt");
-		Thread t = new Thread(mt);
-		Thread t1 = new Thread(mt1);
-		t.start();
-		t1.start();
-		t.join();
-		t1.join();
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+						| UnsupportedLookAndFeelException ex) {
+				}
 
-		Hashtable<Point, Integer> map = mt.getMap();
-		Hashtable<Point, Integer> map1 = mt1.getMap();
-		Hashtable<Point, Integer> map2 = new Hashtable();
-		map2.putAll(map);
-		map2.putAll(map1);
+				final JFrame frame = new JFrame("Points Test");
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.setLayout(new BorderLayout());
+				frame.setSize(500, 500);
+				
+				JPanel openpanel = new JPanel();
+				openpanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+				
+				JPanel pointsPanel = new JPanel();
+				pointsPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+				
+				JList pointsList = new JList();
+				
+				JLabel label = new JLabel();
+				label.setLayout(new FlowLayout(FlowLayout.CENTER));
+				
+				JButton openButton = new JButton("Open");
+				openButton.addActionListener(new ActionListener() {
 
-		Enumeration en = map2.keys();
-		
-		while (en.hasMoreElements()) {
-			Point key = (Point) en.nextElement();
-			System.out.println(key + " : " + map2.get(key));
-		}
-		
+					@Override
+					public void actionPerformed(java.awt.event.ActionEvent e) {
+						JFileChooser chooser = new JFileChooser();
+						if (chooser.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+							File file = chooser.getSelectedFile();
+							MyThread mt = new MyThread(file);
+							Thread t = new Thread(mt);
+							t.start();
+							try {
+								t.join();
+							} catch (InterruptedException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							Hashtable<Point, Integer> map = mt.getMap();
+
+							Enumeration en = map.keys();
+
+							while (en.hasMoreElements()) {
+								key = (Point) en.nextElement();
+
+								pointsList.setListData(map.keySet().toArray());
+							}
+
+						}
+					}
+				});
+				
+				openpanel.add(openButton);
+				pointsPanel.add(pointsList);
+				label.add(openpanel);
+				label.add(pointsPanel);
+				frame.add(label);
+				//frame.pack();
+				frame.setLocationByPlatform(true);
+				frame.setVisible(true);
+
+			}
+		});
+
 	}
 
 }
